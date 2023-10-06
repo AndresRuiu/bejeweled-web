@@ -1,0 +1,24 @@
+---
+import  Header from "../components/Header.astro";
+---
+
+<section  class="h-screen w-screen text-center relative overflow-hidden">
+    <Header logo="/logos/bejeweled-logo.png"></Header>
+    
+    <div class="relative z-30 h-full flex flex-col">
+        <header>
+            <h1 class="text-white pt-40 text-[40px] font-medium">La magia de las joyas</h1>
+            <p class="text-white text-sm">Taylor Swift te presenta la joyería que siempre quisiste tener</p>
+        </header>
+       
+        <footer class=" flex flex-grow flex-col justify-end pb-24">
+            <div>
+                <a class="border-2 rounded font-medium text-white px-10 py-2" href="#">Ver Colección</a>
+            </div>
+        </footer>
+    </div>
+
+    <div class="absolute top-0 bottom-0 h-full w-full z-10">
+        <video class="object-center object-cover h-full w-full" autoplay muted loop src="/video-hero/taylor-swift-sky2_animation.mp4"></video>
+    </div>
+</section>
