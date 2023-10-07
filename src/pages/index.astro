@@ -1,12 +1,16 @@
 ---
 import HeroSection from '../layouts/HeroSection.astro';
 import Layout from '../layouts/Layout.astro';
+import Categorysection from '../layouts/CategorySection.astro';
+import Footer from '../components/Footer.astro';
 ---
 
 <Layout title="Bejeweled" icon="/logos/logo-joyeria.png" />
-	<HeroSection></HeroSection>
 	<main>
+		<HeroSection></HeroSection>
+		<Categorysection></Categorysection>
 	</main>
+	<Footer></Footer>
 </Layout>
 
 <style>

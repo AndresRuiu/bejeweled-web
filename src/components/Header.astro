@@ -4,9 +4,10 @@ interface Props{
 }
 
 const {logo} = Astro.props;
+
 ---
 
-<header class="flex justify-between items-center fixed py-4 px-10 top-0 w-full z-40">
+<header class="flex justify-between items-center relative py-4 px-10 top-0 w-full z-40" id="landing-header">
     <div class="flex flex-grow basis-0">
         <a href="#"><img class="h-8 w-28" src={logo} alt=""></a>
     </div>
@@ -23,29 +24,48 @@ const {logo} = Astro.props;
         <ul class="flex text-sm font-medium items-center text-white">
             <li>
                 <a href="#" class="flex items-center justify-center px-4 py-2">
-                    <svg class="h-5 w-auto" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-                        <path d="M21 21l-6 -6" />
-                    </svg>
+                    <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center justify-center px-4 py-2">
-                    <svg class="h-5 w-auto" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                        <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                        <path d="M17 17h-11v-14h-2" />
-                        <path d="M6 5l14 1l-1 7h-13" />
-                    </svg>
+                <a href="#" class="px-4 py-2 flex items-center justify-center ">
+                    <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
                 </a>
             </li>
-            <li><a href="#" class="inline-block px-4 py-2">Ingresar</a></li>
+            <li><a href="/registerLogin" class="inline-block px-4 py-2">Ingresar</a></li>
         </ul>
     </nav>
+
+    <div id="menu-bd" 
+        class="absolute bg-[#7191b686] backdrop-blur-lg rounded
+        left-[var(--left)] top-[var(--top)]
+        w-[var(--width)] h-[var(--height)]
+        transitio duration-500
+        ease-in-out  opacity-0 -z-10
+        "
+    ></div>
 </header>
 
-<style>
+<script>import { isRenderTemplateResult } from "astro/runtime/server/render/astro/render-template.js"
 
-</style>
+    const ListItem = document.querySelectorAll("#landing-header li")
+    const MenuBD = document.querySelector("#menu-bd") as HTMLElement
+
+    ListItem.forEach((item) =>{
+        item.addEventListener("mouseenter", ()=> {
+            const {left, top, width, height} = item.getBoundingClientRect()
+
+            MenuBD.style.setProperty("--left", `${left}px`)
+            MenuBD.style.setProperty("--top", `${top}px`)
+            MenuBD.style.setProperty("--width", `${width}px`)
+            MenuBD.style.setProperty("--height", `${height}px`)
+            MenuBD.style.opacity ="1"
+            MenuBD.style.visibility= "visible"
+        })
+
+        item.addEventListener("mouseleave", ()=> {
+            MenuBD.style.opacity ="0"
+            MenuBD.style.visibility= "hidden"
+        })
+    })
+</script>
